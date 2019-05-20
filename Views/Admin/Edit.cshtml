@@ -1,0 +1,100 @@
+﻿@model DroneWorks.Models.Products
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h3>Product Editor</h3>
+<hr />
+@if (ViewData["message"] != null)
+{
+    <div class="alert alert-danger">@ViewData["message"]</div>
+}
+<img src="~/Images/@Model.ImageName" id="imgFloat" alt="Picture Not Available" width="50%" float="right">
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProdPk" />
+            <div class="form-group">
+                <label asp-for="ProdName" class="control-label">Product Name:</label>
+                <input asp-for="ProdName" class="form-control" />
+                <span asp-validation-for="ProdName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdDescribe" class="control-label">Description:</label>
+                <textarea asp-for="ProdDescribe" class="form-control" TextMode="multiline" runat="server" Columns="100" rows="5"></textarea>
+                <br />
+                <span asp-validation-for="ProdDescribe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdPrice" class="control-label">Price:</label>
+                <input asp-for="ProdPrice" class="form-control" />
+                <span asp-validation-for="ProdPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="ImageName" class="control-label">Photo:</label>
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @{ if ((Model.CatFk) == 321)
+                    {
+                        <label asp-for="CatFk">Racing</label>
+                        <input asp-for="CatFk" type="radio" GroupName="cat" asp-items="ViewBag.CatFk"
+                               value="321" checked />
+                    }
+                    else
+                    {
+                        <label asp-for="CatFk">Racing</label>
+                        <input asp-for="CatFk" type="radio"
+                               GroupName="cat" asp-items="ViewBag.CatFk" value="321" />
+                    }
+                    if (Model.CatFk == 213)
+                    {
+                        <label asp-for="CatFk">Camera</label>
+                        <input asp-for="CatFk" type="radio" GroupName="cat" id="cat"
+                               value="213" checked />
+                    }
+                    else
+                    {
+                        <label asp-for="CatFk"> Camera </label>
+                        <input asp-for="CatFk" type="radio" GroupName="cat" id="cat"
+                               value="213" />
+                    }
+                    if (Model.CatFk == 123)
+                    {
+                        <label asp-for="CatFk">Tiny Whoop</label>
+                        <input asp-for="CatFk" type="radio" GroupName="cat" id="cat"
+                               value="123" checked />}
+                    else
+                    {
+                        <label asp-for="CatFk">Tiny Whoop</label>
+                        <input asp-for="CatFk" type="radio" GroupName="cat" id="cat" value="123" />
+                    }
+                }
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalStock" class="control-label"></label>
+                <input asp-for="TotalStock" class="form-control" />
+                <span asp-validation-for="TotalStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

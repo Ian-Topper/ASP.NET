@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<h1>Order Confirmation</h1>
+<h3> Thank You, @Context.User.Identity.Name.  Your order has been placed</h3>
+<p>
+    <a asp-action ="Search" asp-controller="Shop" class="class="btn btn-sm btn-warning">Continue Shopping</a>
+</p>
+

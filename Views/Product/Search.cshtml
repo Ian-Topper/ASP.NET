@@ -1,0 +1,47 @@
+﻿@*Shopping Cart*@
+
+@model IEnumerable<DroneWorks.Models.Products>
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Tara Store - Search our Catalog</h1>
+
+<form asp-action="Search" method="post">
+    <div class="form-actions no-color">
+        <p>
+            Search by Product Name: <input maxlength="20" type="text" name="searchName" value="@ViewData["NameFilter"]" />
+            Minimum Price: <input type="number" min="0" max="1000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
+            Maximum Price: <input type="number" min="0" max="1000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="Search">Reset Search</a>
+        </p>
+    </div>
+</form>
+@if (Model != null)
+{
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="width:30%">
+                    Product
+                </th>
+                <th style="width:5%">
+                    Price
+                </th>
+                <th style="width:65%">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td><a asp-action="Details" asp-route-id="@p.ProdPk">@p.ProdName</a></td>
+                    <td style="text-align:right">@p.ProdPrice?.ToString("c2")</td>
+                    <td class="dropdown">@p.ProdDescribe</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

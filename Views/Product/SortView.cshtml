@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DroneWorks.Models.Products>
+
+
+@{
+    ViewData["Title"] = "SortView";
+}
+
+<center>Dr⚙ne St⚙re - Sorted View of Products</center>
+
+<form asp-action="SortView" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Filter by Product Name: <input maxlength="20" type="text" name="searchName" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="SortView">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+<table class=" = " table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="width:30%">
+                <a asp-action="SortView" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Product</a>
+            </th>
+            <th style="width:5%">
+                <a asp-action="SortView" asp-route-sortOrder="@ViewData["PriceSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price</a>
+            </th>
+            <th style="width:65%">Description</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.ProdName</td>
+                <td style="text-align:right">@p.ProdPrice</td>
+                <td>@p.ProdDescribe</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+

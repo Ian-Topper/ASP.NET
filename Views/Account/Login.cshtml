@@ -1,0 +1,60 @@
+﻿@**@
+
+@model LoginInput
+
+@{
+    ViewData["Title"] = "Login";
+}
+<br />
+<h3>Login</h3>
+
+<hr />
+
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-success">@TempData["success"]</div>
+}
+    <img src="~/Images/login.png" id="imgFloat" alt="Picture Not Available" width="50%" float="right" />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Login" method="post">
+
+            <input type="hidden" asp-for="ReturnURL" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label">Username</label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Password</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@if (ViewData["message"] != null)
+{
+    <div class="alert alert-danger">@ViewData["message"]</div>
+}
+
+@if (!Context.User.Identity.IsAuthenticated)
+{
+    <div><br />
+        <a asp-action="Create" asp-controller="Users" class="btn btn-info">Sign Up</a>
+    <br />
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

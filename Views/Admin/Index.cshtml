@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DroneWorks.Models.Products>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h3>
+    Admin View: Manage Products
+</h3>
+<br /><h5>Welcome Back @Context.User.Identity.Name</h5>
+
+<br />
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-danger">@TempData["message"]</div>
+}
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Product</a>
+</p>
+<form asp-action="FilterView" method="post">
+    <div class="align-items-lg-baseline">
+        <p>
+            <h5>
+                <br /> Search by Name: <input maxlenghth="15" type="text" name="searchName" value="@ViewData["NameFilter"]" />
+                <br /><br />  Min Price: <input type="number" min="0" max="1000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
+                &nbsp &nbsp  Max Price: <input type="number" min="0" max="1000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
+            </h5>  <br /><input type="submit" value="search" class="btn btn-primary" />
+            <a asp-action="FilterView" class="btn btn-info">Back to full list</a>
+        </p>
+    </div>
+</form>
+
+@if (ViewData["message"] != null)
+{<br />
+    <div class="alert alert-danger">@ViewData["message"]</div>
+}
+
+<br />
+<table class="table table-responsive-md">
+    <thead>
+        <tr>
+
+            <th>
+                <h6>Product</h6>
+            </th>
+
+            <th>
+                <h6>Price</h6>
+            </th>
+            <th>
+                <h6>Photo</h6>
+            </th>
+            <th>
+                <h6>Current Stock</h6>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <h5>@Html.DisplayFor(modelItem => item.ProdName)</h5>
+                </td>
+
+                <td>
+                    <h5>$@Html.DisplayFor(modelItem => item.ProdPrice)</h5>
+                </td>
+                <td>
+
+                    <img src="~/Images/@item.ImageName" alt="Picture Not Available" width="100%" />
+
+                </td>
+                <td>
+                    <h5> Units:@Html.DisplayFor(modelItem => item.TotalStock)</h5>
+                </td>
+
+                <td>
+                    <a asp-action="Details" class="btn btn-sm btn-info" asp-route-id="@item.ProdPk"><strong>Details</strong></a>
+                    <br /> <br /> <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.ProdPk">&nbsp <strong>Edit</strong> &nbsp</a>
+                    <br />   <br /><a asp-action="Delete" class="btn btn-sm btn-warning" asp-route-id="@item.ProdPk"><strong>Delete</strong></a>
+                    <br /><br />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

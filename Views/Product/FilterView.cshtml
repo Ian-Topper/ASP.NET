@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DroneWorks.Models.Products>
+
+
+@{
+    ViewData["Title"] = "FilterView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Dr⚙ne St⚙re - FilterView</h1>
+
+<form asp-action="FilterView" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Filter By Product Name: <input maxlength="20" type="text" name="searchName" vale="@ViewData["NameFilter"]" />
+            Minimum Price: <input type="number" min="0" max="100000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
+            Maximum Price: <input type="number" min="0" max="100000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
+            <input type="submit" value="search" class="btn btn-default" />
+            <a asp-action="Index">Back to List</a>
+        </p>
+    </div>
+</form>
+<table class=" = " table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th style="width:30%">
+                Product Name
+            </th>
+            <th style="width:5%">
+                Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th style="width:65%">Description</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.ProdName</td>
+                <td style="text-align:right">@p.ProdPrice</td>
+                <td>
+                    <img src="~/Images/@p.ImageName" alt="Picture Not Available" width="100%" />
+                </td>
+                <td style="text-wrap:normal">@p.CatFkNavigation.CatDescribe</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+

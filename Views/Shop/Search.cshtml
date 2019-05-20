@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h3 class="modal-title">Dr⚙neW⚙rks - Search our Catalog</h3>
+
+<form asp-action="Search" method="post">
+    <div class="form-actions no-color">
+        <p>
+            Search by Product Name: <input maxlength="50" type="text" name="searchName" value="@ViewData["NameFilter"]" />
+            Minimum Price: <input type="number" min="0" max="10000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
+            Maximum Price: <input type="number" min="0" max="10000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
+            <input type="submit" value="Search" class="btn btn-small btn-success " />
+            <a asp-action="Search" class="btn btn-sm btn-warning">Reset Search</a>
+        </p>
+    </div>
+</form>
+@if (Model != null)
+{
+    <table class="table table-sm table-striped table-bordered table-info">
+        <thead>
+            <tr>
+                <th style="width:30%">
+                    <a asp-action="SortView" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Product</a>
+                </th>
+                <th style="width:5%">
+                    <a asp-action="SortView" asp-route-sortOrder="@ViewData["PriceSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price</a>
+                </th>
+                <th style="width:65%">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td><a asp-action="Details" asp-route-id="@p.ProdPk">@p.ProdName</a></td>
+                    <td style="text-align:right">@p.ProdPrice</td>
+                    <td>@p.ProdDescribe</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

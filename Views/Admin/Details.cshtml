@@ -1,0 +1,67 @@
+﻿@model DroneWorks.Models.Products
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h3>Product Details</h3>
+
+<hr />
+<div>
+
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            <br />   Type:
+        </dt>
+        <dd class="col-sm-10">
+            <br /> @Html.DisplayFor(model => model.CatFkNavigation.Type)
+        </dd>
+        <dt class="col-sm-2">
+            <br />  Name:
+        </dt>
+        <dd class="col-sm-10">
+            <br />   @Html.DisplayFor(model => model.ProdName)
+        </dd>
+        <dt class="col-sm-2">
+            <br />  Photo:
+        </dt>
+        <dd class="col-sm-10">
+            <br />  <img src="~/Images/@Model.ImageName" alt="Picture Not Available" width="70%" />
+        </dd>
+        <dt class="col-sm-2">
+            <br />  Description:
+        </dt>
+        <dd class="col-sm-10">
+            <br />  @Html.DisplayFor(model => model.ProdDescribe)
+        </dd>
+        <dt class="col-sm-2">
+            <br />  Price:
+        </dt>
+        <dd class="col-sm-10">
+            <br />  $@Html.DisplayFor(model => model.ProdPrice)
+        </dd>
+
+        <dt class="col-sm-2">
+            <br />  Stock:
+        </dt>
+        <dd class="col-sm-10">
+            <br />  @Html.DisplayFor(model => model.TotalStock)
+            <br />
+        </dd>
+
+    </dl>
+</div>
+
+    <div>
+        <center>
+            <hr />
+            <a asp-action="Index" class="btn btn-info"><strong>Back to List</strong></a>&nbsp &nbsp &nbsp &nbsp
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ProdPk">&nbsp &nbsp <strong>Edit</strong> &nbsp &nbsp</a>&nbsp &nbsp &nbsp &nbsp
+            <a asp-action="Delete" class="btn btn-warning" asp-route-id="@Model.ProdPk"><strong>Delete</strong></a>&nbsp &nbsp
+
+        </center>
+  </div>
+
+<br />

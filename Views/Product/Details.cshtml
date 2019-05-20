@@ -1,0 +1,47 @@
+﻿@model DroneWorks.Models.Products
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="modal-title">Dr⚙ne St⚙re - Details</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @*@Html.DisplayNameFor(model => model.ProdName)*@
+            Product Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProdName)
+        </dd>
+        <dt class = "col-sm-4">
+            @*@Html.DisplayNameFor(model => model.ProdDescribe)*@
+            Product Description
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProdDescribe)
+        </dd>
+        <dt class = "col-sm-4">
+            @*@Html.DisplayNameFor(model => model.ProdPrice)*@
+            Price
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProdPrice)
+        </dd>
+        
+        <dt class = "col-sm-4">
+            Picture
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/Images/@Model.ImageName" alt="Picture Not Available" width="60%" />
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.ProdPk">Edit</a> |*@
+    <a asp-action="Index">Back to Store</a>
+</div>

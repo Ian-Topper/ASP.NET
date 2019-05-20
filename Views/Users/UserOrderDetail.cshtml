@@ -1,0 +1,98 @@
+﻿@model IEnumerable<DroneWorks.Models.WorksUser>
+@{
+    ViewData["Title"] = "UserOrderDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@* check if there are orders*@
+
+@if (Model.Any())
+{
+    <h1>Orders for @Context.User.Identity.Name</h1>
+
+    @foreach (var cust in Model)
+    {
+        <h3>@cust.FirstName</h3>
+        <a asp-controller="Users" asp-action="Edit" class="btn btn-sm btn-warning" asp-route-id=@cust.UserPk>Edit Your Profile</a>
+        <p>@cust.UserPk</p>
+
+        @foreach (var order in cust.WorksOrder)
+        {
+            <table class="table table-sm table-striped table-bordered">
+                <tr>
+                    <th>Order No</th>
+                    @{
+                        DateTime order_date = DateTime.Parse(order.OrderDate.ToString());
+                        var datediff = DateTime.Today.Date - order_date.Date;
+                    }
+
+
+                    @{
+                        if (datediff.Days <= 1)
+                        {
+                            <td colspan="4">@order.OrderPk ------- <a asp-controller="WorksOrders1" asp-action="Delete" class="btn btn-sm btn-warning" asp-route-id=@order.OrderPk>Cancel Order</a></td>
+                        }
+                        else
+                        {
+                            <td colspan="4">@order.OrderPk</td>
+                        }
+                    }
+
+                </tr>
+                <tr>
+                    <th>Order Status</th>
+                    <td colspan="4">@order.OrderStatus</td>
+                </tr>
+                <tr>
+                    <th>Shipping Address</th>
+                    <td colspan="4">@order.ShipAddress</td>
+                </tr>
+                <tr>
+                    <th>Order Date</th>
+                    <td colspan="4">@order.OrderDate</td>
+                </tr>
+                <tr>
+                    @{
+                        int rowcount = order.OrderItem.Count + 2;
+                    }
+                    <th rowspan=@rowcount>Order Details</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price per Unit</th>
+                    <th>Total</th>
+                </tr>
+
+                @* for each order detail of an order of a customer *@
+                @{
+                    decimal sum = 0;
+                }
+                @foreach (var detail in order.OrderItem)
+                {
+                    <tr>
+                        <td>@detail.ProdFkNavigation.ProdName</td>
+                        <td>@detail.Quantity</td>
+                        <td>@detail.ProdFkNavigation.ProdPrice</td>
+                        @{
+                            var total = detail.Quantity * detail.ProdFkNavigation.ProdPrice;
+
+                            sum += (decimal)total;
+                        }
+                        <td>$@total</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td>$@sum</td>
+                </tr>
+            </table>
+        }
+    }
+
+}
+else
+{
+    <h1>No orders for @Context.User.Identity.Name</h1>
+}
+

@@ -1,0 +1,78 @@
+﻿@model DroneWorks.Models.Products
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h3>Create New Product</h3>
+@if (ViewData["message"] != null)
+{
+    <div class="alert alert-danger">@ViewData["message"]</div>
+}
+<hr />
+<img src="~/Images/concept.jpg" id="imgFloat" alt="Picture Not Available" width="40%" float="right">
+
+<div class="row">
+    <div class="col-md-8">
+
+        <form asp-action="Create" method="post">
+            @{ Random egg = new Random();
+                int pk = egg.Next();}
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProdPk" class="control-label">Product ID:</label>
+                <input asp-for="ProdPk" class="form-control" value=@pk readonly="readonly" />
+                <span asp-validation-for="ProdPk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdName" class="control-label">Product Name:</label>
+                <input asp-for="ProdName" class="form-control" />
+                <span asp-validation-for="ProdName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdDescribe" class="control-label">Description:</label>
+                <textarea asp-for="ProdDescribe" class="form-control" TextMode="multiline" runat="server" Columns="50" rows="5"></textarea>
+                <br />
+                <span asp-validation-for="ProdDescribe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdPrice" class="control-label">Price:</label>
+                <input asp-for="ProdPrice" class="form-control" />
+                <span asp-validation-for="ProdPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label">Photo:</label>
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatFk">Racing</label>
+                <input asp-for="CatFk" type="radio" GroupName="cat"
+                       value="321" checked />
+
+                <label asp-for="CatFk"> Camera </label>
+                <input asp-for="CatFk" type="radio" GroupName="cat"
+                       value="213" />
+
+                <label asp-for="CatFk">Tiny Whoop</label>
+                <input asp-for="CatFk" type="radio" GroupName="cat" value="123" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalStock" class="control-label">Total Stock:</label>
+                <input asp-for="TotalStock" class="form-control" />
+                <span asp-validation-for="TotalStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
