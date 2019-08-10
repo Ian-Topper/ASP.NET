@@ -1,0 +1,186 @@
+﻿
+@charset "utf-8";
+/*
+Style Sheet Layouts
+Created By:FlynnTopperLe 
+3/10/2019
+css file that makes the site pop
+*/
+
+html {
+    background: url(../Images/drone-racings.jpg), rgba(178, 48, 239, 0.33);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+}
+img#imgFloat {
+    float: right;
+  
+    padding:20px;
+   
+}
+img#imgFloat1 {
+    float: right;
+  
+    padding:0px 150px 0px 0px;
+   
+}
+body {
+    background-color: rgba(225, 222, 248, 0.80);
+    box-shadow: rgba(33, 66, 34, 0.86) 10px 0px 40px, rgba(33, 66, 34, 0.86) -10px 0px 40px,
+        rgba(33, 66, 34, 0.86) -10px 0px 40px, rgba(33, 66, 34, 0.86) -10px 0px 40px;
+    border: 1px solid black;
+    margin: 0px auto;
+    min-width: 420px;
+    max-width: 900px;
+    width: 100%;
+  
+    /*Section Styles*/
+}
+
+
+    /* Header Styles */
+header {
+    background-color: rgba(87, 121, 103, 0.86);
+    border-bottom: 3px solid rgba(176, 57, 232, 0.47);
+    border-top: 3px solid rgba(176, 57, 232, 0.47);
+    padding: 10px 0px 10px 0px;
+    padding-top: 25px;
+}
+
+    header h1 {
+        background: linear-gradient(to right, rgba(35, 83, 238, 0.41) 30%, rgba(176, 57, 232, 0.47));
+        font-size: 2.4em;
+        padding: 40px 0px 40px 0px;
+        font-family: fantasy, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       
+        border-bottom: 3px solid rgba(176, 57, 232, 0.47);
+        border-top: 3px solid rgba(176, 57, 232, 0.47);
+    }
+
+        header h1 em {
+            font-size: 0.7em;
+        }
+
+    /* Navigation Styles */
+
+    header nav ul {
+        text-align: center;
+        padding: 20px;
+    }
+
+        header nav ul li {
+            display: inline-block;
+            border: inset rgba(176, 57, 232, 0.27);
+            background-color: rgba(35, 83, 238, 0.31);
+            font-size: 1.3em;
+            padding: 10px 10px 10px 10px;
+            font-family: fantasy, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            
+        }
+
+    header nav ul li a {
+         color: rgb(20, 26, 20);
+         width: 100%;
+            }
+
+    header nav ul li a:hover {
+         color: darkblue;          
+                }
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+    font-size: 1.2em;
+    padding: 20px 0px 20px 0px;
+    line-height: 30px;
+}
+     body h6{
+         
+        font-size: 1.4em;
+        padding: 10px 0px 10px 0px;
+        font-weight: bolder
+     }
+      body h5{
+        
+       font-size: 1.0em;
+        font-weight: bolder
+        
+     }
+     body h4{
+         color: blue;
+    ;
+     }
+     body h3{
+        text-decoration: none; 
+         color: darkblue;
+         font-size: 1.4em;     
+     }
+    body h2 {
+        text-decoration: none;
+        color: midnightblue;
+        font-size: 1.2em;
+        font-family: fantasy, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        
+    }
+     th#pay, td#pay{
+         border: 2px solid blueviolet;
+         padding:5px;
+     }
+     
+     td#pad{
+         padding: 30px;
+         font-size: 1.2em; 
+     }
+     section#addy{
+         padding: 0px 0px 0px 250px;
+     }
+     #pad1{
+         padding: 15px;
+            
+     }
+      #pad2, #proceed{
+         padding: 10px;
+          color:green; 
+          font-size: .9em;
+          font-family: fantasy;
+     }
+/* Footer Styles */
+
+footer {
+    background-color: rgba(87, 121, 103, 0.86);
+    border-top: 3px solid rgba(176, 57, 232, 0.47);
+    border-bottom: 3px solid rgba(176, 57, 232, 0.47);
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.47);
+    font-size: 1.6em;
+    font-family: fantasy 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+/*
+Start Minh's style
+*/
+#editUserForm, #addUserForm{
+    margin-left: 20px;
+}
+
+
+#OrderDetail{
+    width: 80%;
+}
+#OrderDetail th{
+    color: Red;
+}
+#OrderDetail td{
+    text-align: center;
+}
+
+
+/*
+End Minh's style
+*/
